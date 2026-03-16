@@ -11,7 +11,7 @@ import tasksRoutes from './routes/tasks.routes';
 import { errorHandler } from './middleware/error.middleware';
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = parseInt(process.env.PORT || '4000', 10);
 
 // Security headers
 app.use(helmet());
@@ -58,8 +58,8 @@ app.use((_req, res) => {
 // Global error handler
 app.use(errorHandler);
 
-app.listen(PORT, () => {
-  console.log(`\n🚀 TaskFlow API running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`\n🚀 TaskFlow API running on http://0.0.0.0:${PORT}`);
   console.log(`   Environment: ${process.env.NODE_ENV || 'development'}\n`);
 });
 
